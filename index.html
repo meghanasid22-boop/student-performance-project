@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduVision AI — Predict. Prevent. Empower.</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="app" id="app">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Edu<span>Vision</span> AI</div>
+  <div class="nav-links" id="navLinks">
+    <span class="nav-link active" onclick="showPage('home')">Home</span>
+    <span class="nav-link" onclick="showPage('features')">Features</span>
+    <span class="nav-link" onclick="showPage('about')">About</span>
+  </div>
+  <div class="nav-actions">
+    <button id="themeToggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <button class="btn btn-outline btn-sm" onclick="showLogin()">Login</button>
+    <button class="btn btn-primary btn-sm" onclick="quickDemo()">Try Demo</button>
+  </div>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">🔬 Powered by Machine Learning &amp; AI</div>
+      <h1><div class="line1">Predict Student</div><div class="line2">Performance Early</div></h1>
+      <p class="hero-sub">EduVision AI uses advanced ML algorithms to identify at-risk students before they fall behind — giving faculty the insights to intervene at exactly the right moment.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="showLogin('faculty')">Faculty Portal</button>
+        <button class="btn btn-outline" onclick="showLogin('student')">Student Portal</button>
+        <button class="btn btn-green" onclick="quickDemo()">⚡ Live Demo</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num" data-edit>94.7%</div><div class="stat-label">Prediction Accuracy</div></div>
+        <div class="stat"><div class="stat-num" data-edit>12K+</div><div class="stat-label">Students Monitored</div></div>
+        <div class="stat"><div class="stat-num" data-edit>89%</div><div class="stat-label">Dropout Prevention</div></div>
+        <div class="stat"><div class="stat-num" data-edit>48</div><div class="stat-label">Partner Colleges</div></div>
+      </div>
+      <div class="floating-cards">
+        <div class="float-card"><div class="icon">🌲</div><div class="label">Random Forest</div><div class="value">96.2%</div></div>
+        <div class="float-card"><div class="icon">⚡</div><div class="label">XGBoost</div><div class="value">94.8%</div></div>
+        <div class="float-card"><div class="icon">📊</div><div class="label">Logistic Reg.</div><div class="value">91.3%</div></div>
+        <div class="float-card"><div class="icon">🌿</div><div class="label">Decision Tree</div><div class="value">88.9%</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="padding:3rem 2rem;" id="features">
+    <div class="section-center" style="margin-bottom:3rem;">
+      <div class="section-label">What We Offer</div>
+      <div class="section-title">Everything You Need</div>
+      <div class="section-sub">A complete ecosystem for data-driven education management, from prediction to intervention.</div>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">🎯</div><div class="card-title" data-edit>Early Risk Detection</div><div class="card-desc" data-edit>Identify struggling students 6–8 weeks before traditional methods using behavioral and academic signals.</div></div>
+      <div class="card"><div class="card-icon">🤖</div><div class="card-title" data-edit>AI Teacher Assistant</div><div class="card-desc" data-edit>24/7 AI-powered doubt clearing, note generation, and personalized study guidance for every student.</div></div>
+      <div class="card"><div class="card-icon">📝</div><div class="card-title" data-edit>Editable Faculty Portal</div><div class="card-desc" data-edit>Faculty can update marks, add students, and adjust risk levels with full control over student data.</div></div>
+      <div class="card"><div class="card-icon">📚</div><div class="card-title" data-edit>Study Materials & PYQs</div><div class="card-desc" data-edit>Curated previous year question papers and study resources accessible from the student dashboard.</div></div>
+      <div class="card"><div class="card-icon">📈</div><div class="card-title" data-edit>Real-time Analytics</div><div class="card-desc" data-edit>Live charts, performance trends, and ML model comparisons updated as new data flows in.</div></div>
+      <div class="card"><div class="card-icon">🔔</div><div class="card-title" data-edit>Smart Alerts</div><div class="card-desc" data-edit>Automated faculty notifications when a student's risk score crosses critical thresholds.</div></div>
+    </div>
+  </section>
+
+  <!-- ML MODELS -->
+  <section style="padding:3rem 2rem;background:var(--bg2);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="section-label">Intelligence</div>
+      <div class="section-title">ML Model Performance</div>
+      <div class="model-grid">
+        <div class="model-card rf"><div class="model-name">🌲 Random Forest</div><div class="model-acc" data-edit>96.2%</div><div class="model-bar"><div class="model-bar-fill" style="width:96.2%"></div></div><div class="model-meta" data-edit>Ensemble learning · 500 trees · Best for complex patterns</div></div>
+        <div class="model-card xgb"><div class="model-name">⚡ XGBoost</div><div class="model-acc" data-edit>94.8%</div><div class="model-bar"><div class="model-bar-fill" style="width:94.8%;background:linear-gradient(90deg,var(--amber),var(--red))"></div></div><div class="model-meta" data-edit>Gradient boosting · Handles missing data well</div></div>
+        <div class="model-card lr"><div class="model-name">📊 Logistic Regression</div><div class="model-acc" data-edit>91.3%</div><div class="model-bar"><div class="model-bar-fill" style="width:91.3%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div><div class="model-meta" data-edit>Fast, interpretable · Great for binary classification</div></div>
+        <div class="model-card dt"><div class="model-name">🌿 Decision Tree</div><div class="model-acc" data-edit>88.9%</div><div class="model-bar"><div class="model-bar-fill" style="width:88.9%;background:linear-gradient(90deg,var(--purple),var(--green))"></div></div><div class="model-meta" data-edit>Highly explainable · Faculty-friendly outputs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS & PLACEMENTS -->
+  <section style="padding:3rem 2rem;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="section-label">Career Development</div>
+        <div class="section-title">Events & Placements</div>
+        <div class="section-sub">Stay informed about college events and track placement success stories to guide your career path</div>
+      </div>
+      <div class="grid-2">
+        <!-- Upcoming Events -->
+        <div class="card" style="background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(0,255,136,0.08));">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">📅</div>
+          <div class="card-title">Upcoming Events This Week</div>
+          <div style="font-size:0.9rem;color:var(--text2);line-height:1.8;margin-top:1rem;">
+            <div style="margin-bottom:0.75rem;"><span style="color:var(--cyan);font-weight:600;">🔹 IEEE Student Branch Meeting</span><br><span style="font-size:0.85rem;">Fri 2:00 PM • Auditorium</span></div>
+            <div style="margin-bottom:0.75rem;"><span style="color:var(--amber);font-weight:600;">🔹 IET Membership Drive</span><br><span style="font-size:0.85rem;">Wed 3:00 PM • Engineering Block</span></div>
+            <div style="margin-bottom:0.75rem;"><span style="color:var(--purple);font-weight:600;">🔹 CIS Certification Seminar</span><br><span style="font-size:0.85rem;">Sat 10:00 AM • Computer Lab</span></div>
+            <div><span style="color:var(--green);font-weight:600;">🔹 Campus Cultural Fest</span><br><span style="font-size:0.85rem;">Sun 4:00 PM • Sports Ground</span></div>
+          </div>
+          <button class="btn btn-outline btn-xs" onclick="showPage('features')" style="margin-top:1rem;width:100%;">View All Events →</button>
+        </div>
+
+        <!-- Placement Statistics -->
+        <div class="card" style="background:linear-gradient(135deg,rgba(0,255,136,0.08),rgba(138,92,246,0.08));">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">📊</div>
+          <div class="card-title">Placement Success</div>
+          <div style="font-size:0.9rem;color:var(--text2);line-height:1.8;margin-top:1rem;">
+            <div style="margin-bottom:0.75rem;"><span style="color:var(--green);font-weight:600;">✓ Placement Rate</span><br><span style="font-size:1.3rem;font-weight:700;color:var(--green);font-family:'Rajdhani',sans-serif;">94%</span></div>
+            <div style="margin-bottom:0.75rem;"><span style="color:var(--cyan);font-weight:600;">✓ Avg CTC</span><br><span style="font-size:1.3rem;font-weight:700;color:var(--cyan);font-family:'Rajdhani',sans-serif;">₹7.2 LPA</span></div>
+            <div><span style="color:var(--amber);font-weight:600;">✓ Top Companies</span><br><span style="font-size:0.85rem;">Google • Microsoft • Amazon • TCS • Infosys</span></div>
+          </div>
+          <button class="btn btn-outline btn-xs" onclick="showPage('features')" style="margin-top:1rem;width:100%;">View Details →</button>
+        </div>
+      </div>
+    </div>
+
+        <!-- Placement Edit Modal -->
+        <div class="modal-overlay" id="placementEditModal">
+          <div class="modal">
+            <button class="modal-close" onclick="closeModal('placementEditModal')">✕</button>
+            <div class="modal-title">✏️ Edit Placement Summary</div>
+            <div class="form-group"><label class="form-label">Placement Rate (%)</label><input class="form-input" id="pl_rate" type="number" min="0" max="100"></div>
+            <div class="form-group"><label class="form-label">Average CTC (LPA)</label><input class="form-input" id="pl_avg" type="number" step="0.1" min="0"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Highest CTC (LPA)</label><input class="form-input" id="pl_high" type="number" step="0.1" min="0"></div>
+              <div class="form-group"><label class="form-label">Lowest CTC (LPA)</label><input class="form-input" id="pl_low" type="number" step="0.1" min="0"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Top Companies (comma-separated)</label><input class="form-input" id="pl_companies" placeholder="Google,Microsoft,Amazon"></div>
+            <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1rem;">
+              <button class="btn btn-outline" onclick="closeModal('placementEditModal')">Cancel</button>
+              <button class="btn btn-primary" onclick="savePlacementStats()">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placement Advice Modal (Student) -->
+        <div class="modal-overlay" id="placementAdviceModal">
+          <div class="modal modal-lg">
+            <button class="modal-close" onclick="closeModal('placementAdviceModal')">✕</button>
+            <div class="modal-title">🤝 Placement Coach — Personalized Tips</div>
+            <div id="placementAdviceBody" style="font-size:0.95rem;color:var(--text2);line-height:1.6;"></div>
+            <div style="display:flex;justify-content:flex-end;margin-top:1rem;gap:0.5rem;">
+              <button class="btn btn-outline" onclick="closeModal('placementAdviceModal')">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Placement Record Modal -->
+        <div class="modal-overlay" id="addPlacementModal">
+          <div class="modal modal-lg">
+            <button class="modal-close" onclick="closeModal('addPlacementModal')">✕</button>
+            <div class="modal-title">➕ Add Placement Record</div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Student Name</label><input class="form-input" id="pl_student" placeholder="e.g. Meghana"></div>
+              <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="pl_company" placeholder="e.g. Google"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Package (LPA)</label><input class="form-input" id="pl_package" type="number" step="0.1" min="0"></div>
+              <div class="form-group"><label class="form-label">Role</label><input class="form-input" id="pl_role" placeholder="e.g. Software Engineer"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Year</label><input class="form-input" id="pl_year" type="number" min="2023" placeholder="2025"></div>
+              <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="pl_location" placeholder="e.g. Bangalore"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="pl_notes" placeholder="Interview focus, skills, or company notes..."></textarea></div>
+            <div style="display:flex;justify-content:flex-end;gap:0.75rem;margin-top:1rem;">
+              <button class="btn btn-outline" onclick="closeModal('addPlacementModal')">Cancel</button>
+              <button type="button" class="btn btn-primary" onclick="savePlacementRecord()">Save Placement</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Event Modal -->
+        <div class="modal-overlay" id="addEventModal">
+          <div class="modal modal-lg">
+            <button class="modal-close" onclick="closeModal('addEventModal')">✕</button>
+            <div class="modal-title">➕ Add Event</div>
+            <div class="form-group"><label class="form-label">Event Title</label><input class="form-input" id="ev_title" placeholder="e.g. IEEE Student Branch Meeting"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Date / Time</label><input class="form-input" id="ev_datetime" placeholder="e.g. Fri 2:00 PM"></div>
+              <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ev_location" placeholder="e.g. Auditorium"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Type</label><select class="form-select" id="ev_type"><option>Technical</option><option>Non-Technical</option></select></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="ev_desc" placeholder="Short event details..."></textarea></div>
+            <div style="display:flex;justify-content:flex-end;gap:0.75rem;margin-top:1rem;">
+              <button class="btn btn-outline" onclick="closeModal('addEventModal')">Cancel</button>
+              <button class="btn btn-primary" onclick="saveEventFromModal()">Save Event</button>
+            </div>
+          </div>
+        </div>
+  </section>
+</div>
+
+<!-- ===================== FEATURES PAGE ===================== -->
+<div id="page-features" class="page">
+  <div style="padding-top:80px;">
+    <!-- Features Header -->
+    <section style="padding:4rem 2rem;text-align:center;">
+      <div class="section-label">Capabilities</div>
+      <div class="section-title" style="margin-bottom:2rem;">Our Features</div>
+      <div class="section-sub" style="max-width:700px;margin:0 auto;font-size:1.1rem;">EduVision AI provides a comprehensive suite of tools designed to support both faculty and students in achieving academic excellence through intelligent monitoring and intervention.</div>
+    </section>
+
+    <!-- Features Grid -->
+    <section style="padding:2rem;background:var(--bg);">
+      <div style="max-width:1100px;margin:0 auto;">
+        <div class="grid-2" style="margin-bottom:3rem;">
+          <!-- Feature 1 -->
+          <div class="card" style="border-left:4px solid var(--cyan);">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Early Risk Detection</div>
+            <div class="card-desc">Identify struggling students 6–8 weeks before traditional methods using behavioral and academic signals. Our ML models analyze multiple data points to provide early warnings.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Real-time risk scoring</li>
+              <li>Pattern recognition</li>
+              <li>Predictive analytics</li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="card" style="border-left:4px solid var(--green);">
+            <div class="card-icon">🤖</div>
+            <div class="card-title">AI Teacher Assistant</div>
+            <div class="card-desc">24/7 AI-powered doubt clearing, note generation, and personalized study guidance for every student. Get instant answers to academic questions anytime.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Instant doubt resolution</li>
+              <li>Personalized learning paths</li>
+              <li>Study recommendations</li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="card" style="border-left:4px solid var(--amber);">
+            <div class="card-icon">📝</div>
+            <div class="card-title">Faculty Control Portal</div>
+            <div class="card-desc">Faculty can update marks, add students, and adjust risk levels with full control over student data. Manage your entire class from one dashboard.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Batch mark updates</li>
+              <li>Student management</li>
+              <li>Data validation</li>
+            </ul>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="card" style="border-left:4px solid var(--purple);">
+            <div class="card-icon">📚</div>
+            <div class="card-title">Study Materials Library</div>
+            <div class="card-desc">Curated previous year question papers and study resources accessible from the student dashboard. All materials organized by subject and difficulty.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>PYQ collections</li>
+              <li>Formula sheets</li>
+              <li>Practice sets</li>
+            </ul>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="card" style="border-left:4px solid var(--cyan);">
+            <div class="card-icon">📈</div>
+            <div class="card-title">Advanced Analytics</div>
+            <div class="card-desc">Live charts, performance trends, and ML model comparisons updated as new data flows in. Track progress with detailed visualizations.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Performance dashboards</li>
+              <li>Trend analysis</li>
+              <li>Comparative reports</li>
+            </ul>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="card" style="border-left:4px solid var(--red);">
+            <div class="card-icon">🔔</div>
+            <div class="card-title">Smart Notifications</div>
+            <div class="card-desc">Automated faculty notifications when a student's risk score crosses critical thresholds. Stay informed about important changes instantly.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Real-time alerts</li>
+              <li>Customizable thresholds</li>
+              <li>Multi-channel delivery</li>
+            </ul>
+          </div>
+
+          <!-- Feature 7 -->
+          <div class="card" style="border-left:4px solid var(--green);">
+            <div class="card-icon">🎓</div>
+            <div class="card-title">Events & Placement Tracker</div>
+            <div class="card-desc">Stay updated on all college events (IEEE, IET, CIS memberships, technical & non-technical events). Track placement success rates and company details to inspire and guide students.</div>
+            <ul style="margin-top:1rem;padding-left:1.5rem;font-size:0.875rem;color:var(--text2);">
+              <li>Event announcements & registration</li>
+              <li>Placement statistics & company data</li>
+              <li>Career guidance insights</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events & Placement Section -->
+    <section style="padding:3rem 2rem;background:var(--bg2);">
+      <div style="max-width:1100px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:2.5rem;">
+          <div class="section-label">Career Development</div>
+          <div class="section-title">Events & Placement Insights</div>
+          <div class="section-sub" style="max-width:600px;margin:0 auto;">Never miss important college events and track placement success to guide your career path forward.</div>
+        </div>
+        
+        <div class="grid-2" style="gap:2rem;">
+          <!-- Upcoming Events Panel -->
+          <div class="chart-panel" style="background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(0,255,136,0.05));border:1px solid rgba(0,212,255,0.2);">
+            <div class="panel-title" style="margin-bottom:1.5rem;">📅 Upcoming Events This Week</div>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <!-- Event 1 -->
+              <div style="background:var(--panel);border-left:3px solid var(--cyan);padding:1rem;border-radius:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:0.5rem;">
+                  <div style="font-weight:600;color:var(--cyan);">IEEE Student Branch Meeting</div>
+                  <span class="tag tag-green" style="font-size:0.7rem;">Technical</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text2);">📍 Auditorium • 🕒 Friday 2:00 PM</div>
+                <div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem;">🔹 Learn about membership benefits and networking opportunities in electronics & computing</div>
+              </div>
+
+              <!-- Event 2 -->
+              <div style="background:var(--panel);border-left:3px solid var(--amber);padding:1rem;border-radius:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:0.5rem;">
+                  <div style="font-weight:600;color:var(--amber);">IET Membership Drive</div>
+                  <span class="tag tag-green" style="font-size:0.7rem;">Technical</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text2);">📍 Engineering Block • 🕒 Wednesday 3:00 PM</div>
+                <div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem;">🔹 Explore professional engineering credentials and international opportunities</div>
+              </div>
+
+              <!-- Event 3 -->
+              <div style="background:var(--panel);border-left:3px solid var(--purple);padding:1rem;border-radius:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:0.5rem;">
+                  <div style="font-weight:600;color:var(--purple);">CIS Membership & Certification Seminar</div>
+                  <span class="tag tag-green" style="font-size:0.7rem;">Technical</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text2);">📍 Computer Lab • 🕒 Saturday 10:00 AM</div>
+                <div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem;">🔹 Discover cybersecurity certifications and professional growth paths</div>
+              </div>
+
+              <!-- Event 4 -->
+              <div style="background:var(--panel);border-left:3px solid var(--green);padding:1rem;border-radius:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:0.5rem;">
+                  <div style="font-weight:600;color:var(--green);">Campus Cultural Fest</div>
+                  <span class="tag" style="background:rgba(255,180,0,0.1);color:var(--amber);border:1px solid rgba(255,180,0,0.3);font-size:0.7rem;">Non-Technical</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text2);">📍 Sports Ground • 🕒 Sunday 4:00 PM</div>
+                <div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem;">🔹 Build leadership & team skills through cultural activities</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placement Statistics Panel -->
+          <div class="chart-panel" style="background:linear-gradient(135deg,rgba(0,255,136,0.05),rgba(138,92,246,0.05));border:1px solid rgba(0,255,136,0.2);">
+            <div class="panel-title" style="margin-bottom:1.5rem;">📊 Placement Success Metrics</div>
+            <div style="display:flex;flex-direction:column;gap:1.5rem;">
+              <!-- Stat 1 -->
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                  <span style="color:var(--text2);font-size:0.9rem;">Overall Placement Rate</span>
+                  <span style="font-weight:600;color:var(--green);font-family:'Rajdhani',sans-serif;">94%</span>
+                </div>
+                <div style="background:var(--bg3);height:8px;border-radius:4px;overflow:hidden;">
+                  <div style="background:linear-gradient(90deg,var(--green),var(--cyan));height:100%;width:94%;border-radius:4px;"></div>
+                </div>
+              </div>
+
+              <!-- Stat 2 -->
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                  <span style="color:var(--text2);font-size:0.9rem;">Higher Studies (MS/PhD)</span>
+                  <span style="font-weight:600;color:var(--cyan);font-family:'Rajdhani',sans-serif;">12%</span>
+                </div>
+                <div style="background:var(--bg3);height:8px;border-radius:4px;overflow:hidden;">
+                  <div style="background:linear-gradient(90deg,var(--cyan),var(--purple));height:100%;width:12%;border-radius:4px;"></div>
+                </div>
+              </div>
+
+              <!-- Top Companies -->
+              <div style="border-top:1px solid var(--border);padding-top:1rem;">
+                <div style="font-weight:600;margin-bottom:0.75rem;color:var(--text);">Top Recruiting Companies</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--cyan);">Google</div>
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--cyan);">Microsoft</div>
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--purple);">Amazon</div>
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--cyan);">TCS</div>
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--green);">Infosys</div>
+                  <div style="background:var(--bg3);padding:0.5rem 1rem;border-radius:6px;font-size:0.85rem;border-left:2px solid var(--amber);">IBM</div>
+                </div>
+              </div>
+
+              <!-- Average CTC -->
+              <div style="border-top:1px solid var(--border);padding-top:1rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="color:var(--text2);">Average CTC (₹ LPA)</span>
+                  <div style="font-family:'Rajdhani',sans-serif;font-size:1.8rem;font-weight:700;color:var(--green);">7.2</div>
+                </div>
+                <div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem;">Highest: ₹24.5 LPA | Lowest: ₹3.5 LPA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section style="padding:3rem 2rem;background:var(--bg2);">
+      <div style="max-width:1100px;margin:0 auto;text-align:center;">
+        <div class="section-label">Technology</div>
+        <div class="section-title" style="margin-bottom:2rem;">Built on Advanced ML</div>
+        <div class="grid-4">
+          <div class="card"><div class="card-icon">🌲</div><div class="card-title">Random Forest</div><div class="card-desc" style="font-size:0.8rem;">Ensemble learning for robust predictions</div></div>
+          <div class="card"><div class="card-icon">⚡</div><div class="card-title">XGBoost</div><div class="card-desc" style="font-size:0.8rem;">Gradient boosting for accuracy</div></div>
+          <div class="card"><div class="card-icon">📊</div><div class="card-title">Neural Networks</div><div class="card-desc" style="font-size:0.8rem;">Deep learning for complex patterns</div></div>
+          <div class="card"><div class="card-icon">🔬</div><div class="card-title">Data Science</div><div class="card-desc" style="font-size:0.8rem;">Statistical analysis & validation</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding:4rem 2rem;text-align:center;">
+      <div style="max-width:700px;margin:0 auto;">
+        <h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem;margin-bottom:1rem;">Ready to Transform Education?</h2>
+        <p style="color:var(--text2);margin-bottom:2rem;font-size:1.05rem;">Join hundreds of institutions already using EduVision AI to improve student outcomes.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showLogin('faculty')">Get Started as Faculty</button>
+          <button class="btn btn-outline" onclick="showLogin('student')">View as Student</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div id="page-about" class="page">
+  <div style="padding-top:80px;">
+    <!-- About Header -->
+    <section style="padding:4rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(0,255,136,0.1));">
+      <div class="section-label">About Us</div>
+      <div class="section-title" style="margin-bottom:1.5rem;">EduVision AI</div>
+      <p style="max-width:700px;margin:0 auto;color:var(--text2);font-size:1.1rem;line-height:1.8;">Predict. Prevent. Empower. EduVision AI uses cutting-edge machine learning to transform education by identifying at-risk students early and providing interventions before they fall behind.</p>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section style="padding:3rem 2rem;">
+      <div style="max-width:1100px;margin:0 auto;">
+        <div class="grid-2">
+          <div class="card" style="background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(0,212,255,0.02));">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🎯</div>
+            <div class="card-title">Our Mission</div>
+            <div class="card-desc" style="line-height:1.8;">To leverage advanced AI and machine learning technologies to identify at-risk students early, enabling educators to provide timely interventions and support that transform academic trajectories and improve student outcomes across institutions.</div>
+          </div>
+          <div class="card" style="background:linear-gradient(135deg,rgba(0,255,136,0.05),rgba(0,255,136,0.02));">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🚀</div>
+            <div class="card-title">Our Vision</div>
+            <div class="card-desc" style="line-height:1.8;">A world where no student falls through the cracks. By combining predictive analytics with human insight, we empower educators to create personalized learning experiences that help every student reach their full potential.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section style="padding:3rem 2rem;background:var(--bg2);">
+      <div style="max-width:1100px;margin:0 auto;text-align:center;">
+        <div class="section-label">Impact</div>
+        <div class="section-title" style="margin-bottom:3rem;">Our Achievements</div>
+        <div class="grid-4">
+          <div class="card">
+            <div style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;font-weight:700;color:var(--cyan);margin-bottom:0.5rem;">94.7%</div>
+            <div class="card-title" style="font-size:1rem;">Prediction Accuracy</div>
+            <div class="card-desc" style="font-size:0.85rem;">ML model accuracy in identifying at-risk students</div>
+          </div>
+          <div class="card">
+            <div style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;font-weight:700;color:var(--green);margin-bottom:0.5rem;">12K+</div>
+            <div class="card-title" style="font-size:1rem;">Students Monitored</div>
+            <div class="card-desc" style="font-size:0.85rem;">Active students across partner institutions</div>
+          </div>
+          <div class="card">
+            <div style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;font-weight:700;color:var(--amber);margin-bottom:0.5rem;">89%</div>
+            <div class="card-title" style="font-size:1rem;">Dropout Prevention</div>
+            <div class="card-desc" style="font-size:0.85rem;">Success rate in preventing student dropouts</div>
+          </div>
+          <div class="card">
+            <div style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;font-weight:700;color:var(--purple);margin-bottom:0.5rem;">48</div>
+            <div class="card-title" style="font-size:1rem;">Partner Colleges</div>
+            <div class="card-desc" style="font-size:0.85rem;">Educational institutions using EduVision AI</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Values -->
+    <section style="padding:3rem 2rem;">
+      <div style="max-width:1100px;margin:0 auto;text-align:center;">
+        <div class="section-label">Values</div>
+        <div class="section-title" style="margin-bottom:2rem;">What We Stand For</div>
+        <div class="grid-3">
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">🤝</div>
+            <div class="card-title">Collaboration</div>
+            <div class="card-desc">We work closely with educators and institutions to create solutions that truly serve the needs of students and faculty.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">📊</div>
+            <div class="card-title">Data-Driven</div>
+            <div class="card-desc">Every decision backed by rigorous analysis and proven ML algorithms. Transparency in our methodology and results.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">💡</div>
+            <div class="card-title">Innovation</div>
+            <div class="card-desc">Continuously evolving our technology to stay at the forefront of educational AI and predictive analytics.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">🛡️</div>
+            <div class="card-title">Privacy & Security</div>
+            <div class="card-desc">Student data is sacred. We maintain highest standards of security and comply with all data protection regulations.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">♿</div>
+            <div class="card-title">Accessibility</div>
+            <div class="card-desc">Designed for everyone. Our platform is inclusive and accessible to users with diverse needs and abilities.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:1rem;">🌱</div>
+            <div class="card-title">Sustainability</div>
+            <div class="card-desc">Building technology that supports sustainable educational practices and long-term institutional growth.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section style="padding:4rem 2rem;text-align:center;background:var(--bg2);">
+      <div style="max-width:700px;margin:0 auto;">
+        <h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem;margin-bottom:1rem;">Want to Learn More?</h2>
+        <p style="color:var(--text2);margin-bottom:2rem;font-size:1.05rem;">Connect with our team to discuss how EduVision AI can support your institution's goals.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showToast('Contact form — coming soon','info')">Get in Touch</button>
+          <button class="btn btn-outline" onclick="quickDemo()">Request Demo</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="page-login" class="page">
+  <div class="login-page">
+    <div class="login-box">
+      <div class="login-logo">EduVision AI</div>
+      <div class="login-tagline">Predict. Prevent. Empower.</div>
+      <div class="card">
+        <div style="margin-bottom:1.25rem;">
+          <div class="form-label">Select Role</div>
+          <div class="login-roles">
+            <div class="role-btn active" onclick="selectRole('student',this)">🎓 Student</div>
+            <div class="role-btn" onclick="selectRole('faculty',this)">👨‍🏫 Faculty</div>
+            <div class="role-btn" onclick="selectRole('admin',this)">🔐 Admin</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email / ID</label>
+          <input class="form-input" type="text" placeholder="Enter your ID" id="loginId">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="••••••••" id="loginPw">
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:12px;" onclick="doLogin()">Sign In →</button>
+        <div style="text-align:center;margin-top:1rem;font-size:0.8rem;color:var(--text3);">Demo credentials: any ID + any password</div>
+        <button class="btn btn-outline btn-sm" style="width:100%;margin-top:0.5rem;" onclick="showPage('home')">← Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STUDENT DASHBOARD ===================== -->
+<div id="page-student" class="page">
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div style="padding:0.75rem;text-align:center;border-bottom:1px solid var(--border);margin-bottom:1rem;">
+          <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:50%;margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🎓</div>
+          <div style="font-weight:600;font-size:0.9rem;" data-edit>Arjun Sharma</div>
+          <div style="font-size:0.75rem;color:var(--text3);" data-edit>CS-2021-045</div>
+        </div>
+        <div class="sidebar-label">Navigation</div>
+        <div class="sidebar-item active" onclick="showStudentTab('overview',this)"><span class="icon">📊</span>Overview</div>
+        <div class="sidebar-item" onclick="showStudentTab('ai-teacher',this)"><span class="icon">🤖</span>AI Teacher</div>
+        <div class="sidebar-item" onclick="showStudentTab('pyq',this)"><span class="icon">📝</span>Previous Year Papers</div>
+        <div class="sidebar-item" onclick="showStudentTab('materials',this)"><span class="icon">📚</span>Study Materials</div>
+        <div class="sidebar-item" onclick="showStudentTab('performance',this)"><span class="icon">📈</span>Performance</div>
+        <div class="sidebar-item" onclick="showStudentTab('achievements',this)"><span class="icon">🏆</span>Achievements</div>
+        <div class="sidebar-item" onclick="showStudentTab('events',this)"><span class="icon">🎓</span>Events & Placements</div>
+      </div>
+      <div class="sidebar-section" style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
+        <div class="sidebar-item" onclick="showPage('home')"><span class="icon">🚪</span>Logout</div>
+      </div>
+    </div>
+    <!-- Main -->
+    <div class="main-content">
+      <!-- OVERVIEW TAB -->
+      <div id="stab-overview" class="tab-content active">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;">
+          <div><div class="section-label">Student Dashboard</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;" data-edit>Welcome back, Arjun! 👋</div></div>
+          <span class="tag tag-green">🟢 On Track</span>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi cyan"><div class="kpi-label">Overall Score</div><div class="kpi-value cyan" data-edit>82.4%</div><div class="kpi-change up">↑ 3.2% this month</div></div>
+          <div class="kpi green"><div class="kpi-label">Attendance</div><div class="kpi-value green" data-edit>91%</div><div class="kpi-change up">↑ Good standing</div></div>
+          <div class="kpi amber"><div class="kpi-label">Assignments</div><div class="kpi-value amber" data-edit>8/10</div><div class="kpi-change down">↓ 2 pending</div></div>
+          <div class="kpi cyan"><div class="kpi-label">Study Streak</div><div class="kpi-value cyan" data-edit>12 🔥</div><div class="kpi-change up">Keep it up!</div></div>
+        </div>
+        <div class="grid-2" style="margin-top:1.5rem;">
+          <div class="chart-panel">
+            <div class="panel-title"><span>Subject Performance</span></div>
+            <div class="subject-bar"><div class="subject-info"><span class="name">Mathematics</span><span class="score" data-edit>88/100</span></div><div class="bar-track"><div class="bar-fill" style="width:88%;background:linear-gradient(90deg,var(--cyan),var(--green))"></div></div></div>
+            <div class="subject-bar"><div class="subject-info"><span class="name">Physics</span><span class="score" data-edit>76/100</span></div><div class="bar-track"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,var(--amber),var(--red))"></div></div></div>
+            <div class="subject-bar"><div class="subject-info"><span class="name">Computer Science</span><span class="score" data-edit>94/100</span></div><div class="bar-track"><div class="bar-fill" style="width:94%;background:linear-gradient(90deg,var(--green),var(--cyan))"></div></div></div>
+            <div class="subject-bar"><div class="subject-info"><span class="name">Chemistry</span><span class="score" data-edit>71/100</span></div><div class="bar-track"><div class="bar-fill" style="width:71%;background:linear-gradient(90deg,var(--purple),var(--cyan))"></div></div></div>
+            <div class="subject-bar"><div class="subject-info"><span class="name">English</span><span class="score" data-edit>85/100</span></div><div class="bar-track"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div></div>
+          </div>
+          <div class="chart-panel">
+            <div class="panel-title">Performance Trend</div>
+            <div class="chart-wrap"><canvas id="sTrendChart"></canvas></div>
+          </div>
+        </div>
+        <!-- AI Insight -->
+        <div style="margin-top:1.5rem;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:var(--radius);padding:1.25rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;"><span style="font-size:1.2rem;">🤖</span><span style="font-family:'Rajdhani',sans-serif;font-weight:600;">AI Insight</span></div>
+          <p style="font-size:0.875rem;color:var(--text2);line-height:1.7;" data-edit>Your Computer Science performance is exceptional! Focus on improving Physics — try the Chapter 3 notes in Study Materials. Your ML risk score is LOW (12%), which means you're on a great trajectory for the semester.</p>
+        </div>
+        <!-- Motivation Quote -->
+        <div style="margin-top:1rem;background:rgba(0,255,136,0.04);border:1px solid rgba(0,255,136,0.2);border-radius:var(--radius);padding:1rem 1.25rem;font-style:italic;color:var(--text2);font-size:0.875rem;" id="motivationQuote">
+          "The expert in anything was once a beginner." — Helen Hayes
+        </div>
+      </div>
+
+      <!-- AI TEACHER TAB -->
+      <div id="stab-ai-teacher" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Student Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">AI Teacher 🤖</div><div style="font-size:0.85rem;color:var(--text2);margin-top:0.25rem;">Ask any academic doubt — get instant, intelligent answers</div></div>
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="ai-avatar">🧠</div>
+            <div><div class="ai-name">Prof. AI</div><div class="ai-status">● Online — Ready to help</div></div>
+          </div>
+          <div class="chat-suggestions">
+            <span class="suggestion-chip" onclick="sendSuggestion('Explain Newton\'s laws of motion')">Newton's Laws</span>
+            <span class="suggestion-chip" onclick="sendSuggestion('What is gradient descent in ML?')">Gradient Descent</span>
+            <span class="suggestion-chip" onclick="sendSuggestion('Summarize chapter 5 of physics')">Physics Ch.5</span>
+            <span class="suggestion-chip" onclick="sendSuggestion('How to solve quadratic equations?')">Quadratic Eq.</span>
+            <span class="suggestion-chip" onclick="sendSuggestion('Give me notes on recursion in CS')">Recursion Notes</span>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg msg-ai">
+              <div>Hello! I'm Prof. AI, your personal academic assistant. 👋<br><br>I can help you with:<br>• 📖 Any subject doubts or questions<br>• 📝 Quick notes on any topic<br>• 🧮 Step-by-step problem solving<br>• 📊 Exam preparation strategies<br><br>What would you like to learn today?</div>
+              <div class="msg-time">Just now</div>
+            </div>
+          </div>
+          <div class="chat-input-wrap">
+            <textarea class="chat-input" id="chatInput" placeholder="Type your doubt here..." rows="2" onkeydown="handleChatKey(event)"></textarea>
+            <button type="button" class="btn btn-primary" onclick="sendChat()">Send ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PYQ TAB -->
+      <div id="stab-pyq" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Student Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Previous Year Question Papers 📝</div></div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="filterPYQ('all',this)">All Subjects</button>
+          <button class="tab-btn" onclick="filterPYQ('math',this)">Mathematics</button>
+          <button class="tab-btn" onclick="filterPYQ('physics',this)">Physics</button>
+          <button class="tab-btn" onclick="filterPYQ('cs',this)">Computer Science</button>
+          <button class="tab-btn" onclick="filterPYQ('chem',this)">Chemistry</button>
+        </div>
+        <div class="pyq-grid" id="pyqGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- STUDY MATERIALS TAB -->
+      <div id="stab-materials" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Student Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Study Materials 📚</div></div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="filterMat('all',this)">All</button>
+          <button class="tab-btn" onclick="filterMat('notes',this)">Notes</button>
+          <button class="tab-btn" onclick="filterMat('video',this)">Videos</button>
+          <button class="tab-btn" onclick="filterMat('practice',this)">Practice Sets</button>
+          <button class="tab-btn" onclick="filterMat('formula',this)">Formula Sheets</button>
+        </div>
+        <div class="material-list" id="materialList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- PERFORMANCE TAB -->
+      <div id="stab-performance" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Analytics</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Detailed Performance 📈</div></div>
+        <div class="grid-2">
+          <div class="chart-panel"><div class="panel-title">Radar — Subject Balance</div><div class="chart-wrap"><canvas id="sRadarChart"></canvas></div></div>
+          <div class="chart-panel"><div class="panel-title">Score Distribution</div><div class="chart-wrap"><canvas id="sBarChart"></canvas></div></div>
+        </div>
+        <div class="chart-panel" style="margin-top:1.5rem;"><div class="panel-title">Monthly Attendance %</div><div class="chart-wrap" style="height:200px;"><canvas id="sAttChart"></canvas></div></div>
+      </div>
+
+      <!-- ACHIEVEMENTS TAB -->
+      <div id="stab-achievements" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Gamification</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Achievements 🏆</div></div>
+        <div class="badge-grid" id="badgeGrid"></div>
+      </div>
+
+      <!-- EVENTS & PLACEMENTS TAB -->
+      <div id="stab-events" class="tab-content">
+        <div style="margin-bottom:1.5rem;"><div class="section-label">Career Development</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Events & Placements 🎓</div><div style="font-size:0.85rem;color:var(--text2);margin-top:0.25rem;">Stay updated on college events, placement stories, and career coaching advice</div></div>
+
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div>
+              <div class="section-sub" style="margin-bottom:0.5rem;">Your AI Master helps you prepare for interviews, improve employability, and understand what recruiters want.</div>
+              <div style="font-weight:600;color:var(--cyan);">Ask the AI Master how to improve your profile, skills, and placement chances.</div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="generatePlacementAdvice()">Ask AI Master</button>
+          </div>
+        </div>
+
+        <div class="grid-2" style="gap:1.5rem;">
+          <!-- Upcoming Events -->
+          <div class="chart-panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+              <div class="panel-title">📅 Upcoming Events</div>
+              <div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="openStudentAIChat()">🤝 Placement Coach</button>
+              </div>
+            </div>
+            <div id="studentEventsList" style="display:flex;flex-direction:column;gap:1rem;"></div>
+          </div>
+
+          <!-- Placement Insights -->
+          <div class="chart-panel">
+            <div class="panel-title" style="margin-bottom:1.25rem;">📊 Placement Success Insights</div>
+            <div id="studentPlacementPanel" style="display:flex;flex-direction:column;gap:1.5rem;"></div>
+            <div id="studentPlacementRecords" style="display:flex;flex-direction:column;gap:0.85rem;margin-top:1rem;"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FACULTY DASHBOARD ===================== -->
+<div id="page-faculty" class="page">
+  <div class="dash-layout">
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div style="padding:0.75rem;text-align:center;border-bottom:1px solid var(--border);margin-bottom:1rem;">
+          <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--amber),var(--red));border-radius:50%;margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">👨‍🏫</div>
+          <div style="font-weight:600;font-size:0.9rem;" data-edit>Dr. Priya Nair</div>
+          <div style="font-size:0.75rem;color:var(--text3);">Computer Science Dept.</div>
+        </div>
+        <div class="sidebar-label">Faculty Navigation</div>
+        <div class="sidebar-item active" onclick="showFacultyTab('overview',this)"><span class="icon">📊</span>Overview</div>
+        <div class="sidebar-item" onclick="showFacultyTab('students',this)"><span class="icon">👥</span>Manage Students</div>
+        <div class="sidebar-item" onclick="showFacultyTab('marks',this)"><span class="icon">✏️</span>Edit Marks</div>
+        <div class="sidebar-item" onclick="showFacultyTab('risk',this)"><span class="icon">⚠️</span>Risk Alerts</div>
+        <div class="sidebar-item" onclick="showFacultyTab('analytics',this)"><span class="icon">📈</span>Analytics</div>
+        <div class="sidebar-item" onclick="showFacultyTab('events',this)"><span class="icon">🎓</span>Events & Placements</div>
+      </div>
+      <div class="sidebar-section" style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
+        <div class="sidebar-item" onclick="showPage('home')"><span class="icon">🚪</span>Logout</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <!-- FACULTY OVERVIEW -->
+      <div id="ftab-overview" class="tab-content active">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;">
+          <div><div class="section-label">Faculty Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;" data-edit>Faculty Command Center</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openModal('addStudentModal')">+ Add Student</button>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi cyan"><div class="kpi-label">Total Students</div><div class="kpi-value cyan" id="totalStudents">62</div></div>
+          <div class="kpi red"><div class="kpi-label">High Risk</div><div class="kpi-value red" id="highRiskCount">8</div></div>
+          <div class="kpi amber"><div class="kpi-label">Medium Risk</div><div class="kpi-value amber" id="medRiskCount">14</div></div>
+          <div class="kpi green"><div class="kpi-label">On Track</div><div class="kpi-value green" id="goodCount">40</div></div>
+        </div>
+        <div class="grid-2" style="margin-top:1.5rem;">
+          <div class="chart-panel"><div class="panel-title">Class Distribution</div><div class="chart-wrap"><canvas id="fDistChart"></canvas></div></div>
+          <div class="chart-panel"><div class="panel-title">Risk Trend (Monthly)</div><div class="chart-wrap"><canvas id="fRiskChart"></canvas></div></div>
+        </div>
+      </div>
+
+      <!-- MANAGE STUDENTS -->
+      <div id="ftab-students" class="tab-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+          <div><div class="section-label">Faculty Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Manage Students</div></div>
+          <button class="btn btn-green btn-sm" onclick="openModal('addStudentModal')">+ Add Student</button>
+        </div>
+        <div class="search-bar">
+          <span>🔍</span>
+          <input type="text" placeholder="Search by name, ID, or department..." id="studentSearch" oninput="filterStudents()">
+        </div>
+        <div class="chart-panel">
+          <div class="table-wrap">
+            <table id="studentTable">
+              <thead><tr><th>ID</th><th>Name</th><th>Dept</th><th>Semester</th><th>Risk Level</th><th>Actions</th></tr></thead>
+              <tbody id="studentTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDIT MARKS -->
+      <div id="ftab-marks" class="tab-content">
+        <div style="margin-bottom:1.25rem;"><div class="section-label">Faculty Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Edit Student Marks ✏️</div><div style="font-size:0.85rem;color:var(--text2);margin-top:0.25rem;">Click any marks field to edit directly. Changes update the risk score automatically.</div></div>
+        <div class="search-bar">
+          <span>🔍</span>
+          <input type="text" placeholder="Search student..." id="marksSearch" oninput="filterMarks()">
+        </div>
+        <div class="chart-panel">
+          <div class="table-wrap">
+            <table id="marksTable">
+              <thead><tr><th>Name</th><th>Math</th><th>Physics</th><th>CS</th><th>Chemistry</th><th>English</th><th>Avg</th><th>Risk</th><th>Save</th></tr></thead>
+              <tbody id="marksTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- RISK ALERTS -->
+      <div id="ftab-risk" class="tab-content">
+        <div style="margin-bottom:1.25rem;"><div class="section-label">Faculty Portal</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Risk Alerts ⚠️</div></div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;" id="riskAlertList"></div>
+      </div>
+
+      <!-- ANALYTICS -->
+      <div id="ftab-analytics" class="tab-content">
+        <div style="margin-bottom:1.25rem;"><div class="section-label">Faculty Analytics</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">Class Analytics 📈</div></div>
+        <div class="grid-2">
+          <div class="chart-panel"><div class="panel-title">Score Histogram</div><div class="chart-wrap"><canvas id="fHistChart"></canvas></div></div>
+          <div class="chart-panel"><div class="panel-title">Subject Averages</div><div class="chart-wrap"><canvas id="fSubChart"></canvas></div></div>
+        </div>
+      </div>
+      <!-- EVENTS & PLACEMENTS (Faculty) -->
+      <div id="ftab-events" class="tab-content">
+        <div style="margin-bottom:1.25rem;"><div class="section-label">Career</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.25rem;font-weight:700;">Events & Placements</div></div>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;"><div style="font-weight:600;">Upcoming Events</div><button class="btn btn-primary btn-sm" onclick="openAddEventModal()">+ Add Event</button></div>
+            <div id="facultyEventsList" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+          </div>
+          <div class="card">
+            <div style="font-weight:600;margin-bottom:0.5rem;">Placement Summary</div>
+            <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
+              <div style="flex:1;min-width:160px;">
+                <div style="color:var(--text2);font-size:0.9rem;">Overall Placement Rate</div>
+                <div id="facultyPlacementRate" style="font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;color:var(--green);">94%</div>
+              </div>
+              <div style="flex:1;min-width:160px;">
+                <div style="color:var(--text2);font-size:0.9rem;">Avg CTC</div>
+                <div id="facultyPlacementAvg" style="font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;color:var(--cyan);">₹7.2 LPA</div>
+              </div>
+              <div style="flex:1;min-width:160px;">
+                <div style="color:var(--text2);font-size:0.9rem;">Top Recruiters</div>
+                <div id="facultyTopRecruiters" style="font-weight:600;">Google, Microsoft, Amazon, TCS</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:0.75rem;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openPlacementModalPrefill()">✏️ Edit Placement</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="openAddPlacementModal()">+ Add Placement</button>
+            </div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;"><div style="font-weight:600;">Placement Records</div><div><button type="button" class="btn btn-outline btn-sm" onclick="openAddPlacementModal()">+ Add Placement</button></div></div>
+            <div id="facultyPlacementList" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN PANEL ===================== -->
+<div id="page-admin" class="page">
+  <div class="dash-layout">
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div style="padding:0.75rem;text-align:center;border-bottom:1px solid var(--border);margin-bottom:1rem;">
+          <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:50%;margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🔐</div>
+          <div style="font-weight:600;font-size:0.9rem;">System Admin</div>
+        </div>
+        <div class="sidebar-item active"><span class="icon">🖥️</span>System Overview</div>
+        <div class="sidebar-item"><span class="icon">🗄️</span>Dataset Manager</div>
+        <div class="sidebar-item"><span class="icon">🧠</span>Model Training</div>
+        <div class="sidebar-item"><span class="icon">📋</span>Activity Logs</div>
+      </div>
+      <div class="sidebar-section" style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
+        <div class="sidebar-item" onclick="showPage('home')"><span class="icon">🚪</span>Logout</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div style="margin-bottom:1.5rem;"><div class="section-label">Admin Panel</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;">System Control Center 🔐</div></div>
+      <div class="kpi-grid">
+        <div class="kpi cyan"><div class="kpi-label">System Uptime</div><div class="kpi-value cyan">99.8%</div></div>
+        <div class="kpi green"><div class="kpi-label">Total Students</div><div class="kpi-value green">12,847</div></div>
+        <div class="kpi amber"><div class="kpi-label">Institutions</div><div class="kpi-value amber">48</div></div>
+        <div class="kpi cyan"><div class="kpi-label">Model Version</div><div class="kpi-value cyan">v4.2</div></div>
+      </div>
+      <div class="grid-2" style="margin-top:1.5rem;">
+        <div class="card">
+          <div class="card-title" style="margin-bottom:1rem;">📤 Dataset Upload</div>
+          <div style="border:2px dashed var(--border2);border-radius:10px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.2s;" onmouseenter="this.style.borderColor='var(--cyan)'" onmouseleave="this.style.borderColor='var(--border2)'" onclick="showToast('Upload feature — connect to backend','info')">
+            <div style="font-size:2rem;margin-bottom:0.75rem;">📂</div>
+            <div style="font-weight:600;margin-bottom:0.25rem;">Drop CSV/Excel here</div>
+            <div style="font-size:0.8rem;color:var(--text3);">or click to browse</div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:1rem;" onclick="showToast('Training initiated — ETA 3 min','info')">🧠 Train Model</button>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:1rem;">📋 Activity Log</div>
+          <div style="max-height:300px;overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:0.78rem;" id="adminLog"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============= MODALS ============= -->
+<!-- Add Student Modal -->
+<div class="modal-overlay" id="addStudentModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" onclick="closeModal('addStudentModal')">✕</button>
+    <div class="modal-title">➕ Add New Student</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" id="ns_name" placeholder="e.g. Rohan Kumar"></div>
+      <div class="form-group"><label class="form-label">Student ID *</label><input class="form-input" id="ns_id" placeholder="e.g. CS-2024-099"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Department</label><select class="form-select" id="ns_dept"><option>Computer Science</option><option>Electrical Eng.</option><option>Mechanical Eng.</option><option>Civil Eng.</option><option>Mathematics</option><option>Physics</option></select></div>
+      <div class="form-group"><label class="form-label">Semester</label><select class="form-select" id="ns_sem"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+    </div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:600;margin:0.75rem 0 0.5rem;">Initial Marks</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Mathematics</label><input class="form-input" id="ns_math" type="number" min="0" max="100" placeholder="0–100"></div>
+      <div class="form-group"><label class="form-label">Physics</label><input class="form-input" id="ns_physics" type="number" min="0" max="100" placeholder="0–100"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Computer Science</label><input class="form-input" id="ns_cs" type="number" min="0" max="100" placeholder="0–100"></div>
+      <div class="form-group"><label class="form-label">Chemistry</label><input class="form-input" id="ns_chem" type="number" min="0" max="100" placeholder="0–100"></div>
+    </div>
+    <div class="form-group"><label class="form-label">English</label><input class="form-input" id="ns_eng" type="number" min="0" max="100" placeholder="0–100"></div>
+    <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1rem;">
+      <button class="btn btn-outline" onclick="closeModal('addStudentModal')">Cancel</button>
+      <button class="btn btn-green" onclick="addStudent()">✓ Add Student</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Student Modal -->
+<div class="modal-overlay" id="editStudentModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('editStudentModal')">✕</button>
+    <div class="modal-title">✏️ Edit Student</div>
+    <input type="hidden" id="edit_idx">
+    <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="edit_name"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Department</label><select class="form-select" id="edit_dept"><option>Computer Science</option><option>Electrical Eng.</option><option>Mechanical Eng.</option><option>Civil Eng.</option><option>Mathematics</option><option>Physics</option></select></div>
+      <div class="form-group"><label class="form-label">Semester</label><select class="form-select" id="edit_sem"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Risk Level</label>
+        <select class="form-select" id="edit_risk">
+          <option value="low">🟢 Low Risk</option>
+          <option value="medium">🟡 Medium Risk</option>
+          <option value="high">🔴 High Risk</option>
+          <option value="critical">🚨 Critical</option>
+          <option value="excellent">⭐ Excellent</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1rem;">
+      <button class="btn btn-outline" onclick="closeModal('editStudentModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditStudent()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Student Modal -->
+<div class="modal-overlay" id="viewStudentModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" onclick="closeModal('viewStudentModal')">✕</button>
+    <div class="modal-title" id="viewStudentTitle">Student Details</div>
+    <div id="viewStudentBody"></div>
+  </div>
+</div>
+
+<!-- Edit Button -->
+<button class="edit-btn" id="editModeBtn" onclick="toggleEditMode()">✏️ Edit Content</button>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+u
